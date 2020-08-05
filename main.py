@@ -5,10 +5,9 @@ from discord.ext import commands
 from discord import utils
 token = os.environ.get('BOT_TOKEN')
 #=====Translate==============================
-
 def translate(text,languarge):
   result = translator.translate(text, dest=languarge)
-  return result.text
+  return result
 
 #================================
 #==============Speak=====================
@@ -79,8 +78,12 @@ async def code(ctx, syntaxis, *, code):
 
 @Bot.command()
 async def trans(ctx, languarge, *, text):
-  w = await ctx.channel.create_webhook(name= 'Translator')
-  await w.send(f'**{ctx.message.author} {translate("said",languarge)}:**\n{translate(text, languarge)}', avatar_url= 'https://cdn.discordapp.com/avatars/715538259538608208/25c9bfe44a57277cea622158ea9237ee.png?size=128')
+  if ctx.message.author.nick:
+      nname = ctx.message.author.nick
+    else:
+      nname = ctx.message.author.name
+  w = await ctx.channel.create_webhook(name= nname)
+  await w.send(f'{translate(text, languarge).text} ||{translate(text, languarge).src}:{translate(text, languarge).dest}||', avatar_url= ctx.message.author.avatar_url)
   await w.delete()
   await ctx.message.delete()
 

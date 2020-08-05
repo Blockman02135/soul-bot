@@ -79,9 +79,9 @@ async def code(ctx, syntaxis, *, code):
 @Bot.command()
 async def trans(ctx, languarge, *, text):
   if ctx.message.author.nick:
-      nname = ctx.message.author.nick
-    else:
-      nname = ctx.message.author.name
+     nname = ctx.message.author.nick
+  else:
+     nname = ctx.message.author.name
   w = await ctx.channel.create_webhook(name= nname)
   await w.send(f'{translate(text, languarge).text} ||{translate(text, languarge).src}:{translate(text, languarge).dest}||', avatar_url= ctx.message.author.avatar_url)
   await w.delete()

@@ -83,7 +83,7 @@ async def trans(ctx, languarge, *, text):
   else:
      nname = ctx.message.author.name
   w = await ctx.channel.create_webhook(name= nname)
-  await w.send(f'{translate(text, languarge).text} ||{translate(text, languarge).src}:{translate(text, languarge).dest}||', avatar_url= ctx.message.author.avatar_url)
+  await w.send(f'{translate(text, languarge).text} ||[{translate(text, languarge).src}:{translate(text, languarge).dest}]||', avatar_url= ctx.message.author.avatar_url)
   await w.delete()
   await ctx.message.delete()
 

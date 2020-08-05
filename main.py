@@ -50,19 +50,19 @@ async def on_command_error(ctx, error):
 @Bot.event
 async def on_message(message):
   if ctx.message.author.nick:
-       nname = ctx.message.author.nick
-    else:
-       nname = ctx.message.author.name
+    nname = message.author.nick
+  else:
+    nname = message.author.name
   if (message.author=='ɹaɹoldxaʇauɹaʇu!#2036':
-    w = await ctx.channel.create_webhook(name= nname)
+    w = await message.channel.create_webhook(name= nname)
     await w.send(translate(message.content, "ru").text}, avatar_url= ctx.message.author.avatar_url)
     await w.delete()
-    await ctx.message.delete()
-    if (message.author=='Blockman_#0431':
-      w = await ctx.channel.create_webhook(name= nname)
-      await w.send(translate(message.content, "en").text}, avatar_url= ctx.message.author.avatar_url)
-      await w.delete()
-      await ctx.message.delete()
+    await message.delete()
+  if (message.author=='Blockman_#0431':
+    w = await message.channel.create_webhook(name= nname)
+    await w.send(translate(message.content, "en").text}, avatar_url= ctx.message.author.avatar_url)
+    await w.delete()
+    await message.delete()
 
 @Bot.command()
 async def code(ctx, syntaxis, *, code):

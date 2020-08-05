@@ -47,6 +47,22 @@ async def on_command_error(ctx, error):
         await ctx.send(embed=discord.Embed(description=f'{ctx.message.author.mention}, **The command is entered incorrectly**'),delete_after=5)
         await ctx.message.delete()
 
+@Bot.event
+async def on_message(message):
+  if ctx.message.author.nick:
+       nname = ctx.message.author.nick
+    else:
+       nname = ctx.message.author.name
+  if (message.author=='ɹaɹoldxaʇauɹaʇu!#2036':
+    w = await ctx.channel.create_webhook(name= nname)
+    await w.send(translate(message.content, "ru").text}, avatar_url= ctx.message.author.avatar_url)
+    await w.delete()
+    await ctx.message.delete()
+    if (message.author=='Blockman_#0431':
+      w = await ctx.channel.create_webhook(name= nname)
+      await w.send(translate(message.content, "en").text}, avatar_url= ctx.message.author.avatar_url)
+      await w.delete()
+      await ctx.message.delete()
 
 @Bot.command()
 async def code(ctx, syntaxis, *, code):

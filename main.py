@@ -89,7 +89,7 @@ async def trans(ctx, languarge, *, text):
   
   @Bot.event
   async def on_message(message):
-    msg = message.context
+    msg = message.content
     spl = msg.split('')
     if (not spl[0]=='|'):
       if message.author.nick:

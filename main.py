@@ -55,12 +55,12 @@ async def on_message(message):
     nname = message.author.name
   if message.author=='ɹaɹoldxaʇauɹaʇu!#2036':
     w = await message.channel.create_webhook(name= nname)
-    await w.send(translate(message.content, "ru").text), avatar_url= message.author.avatar_url)
+    await w.send(translate(message.content, "ru").text, avatar_url= message.author.avatar_url)
     await w.delete()
     await message.delete()
   if message.author=='Blockman_#0431':
     w = await message.channel.create_webhook(name= nname)
-    await w.send(translate(message.content, "en").text), avatar_url= message.author.avatar_url)
+    await w.send(translate(message.content, "en").text, avatar_url= message.author.avatar_url)
     await w.delete()
     await message.delete()
 

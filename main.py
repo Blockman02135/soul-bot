@@ -86,6 +86,20 @@ async def trans(ctx, languarge, *, text):
   await w.send(f'{translate(text, languarge).text} ||[{translate(text, languarge).src}:{translate(text, languarge).dest}]||', avatar_url= ctx.message.author.avatar_url)
   await w.delete()
   await ctx.message.delete()
+  
+  @Bot.event
+  async def on_message(message):
+    msg = message.context
+    spl = msg.split('')
+    if (not spl[0]=='|'):
+      if message.author.nick:
+        nname = message.author.nick
+      else:
+        nname = message.author.name
+      w = await message.channel.create_webhook(name= nname)
+      await w.send(f'**EN:** {translate(msg, 'en').text}\n\n**RU:** {translate(msg,'ru')}', avatar_url= ctx.message.author.avatar_url)
+      await w.delete()
+      await message.delete()
 
 
 @Bot.command()

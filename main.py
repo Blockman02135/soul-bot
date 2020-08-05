@@ -49,7 +49,7 @@ async def on_command_error(ctx, error):
 
 @Bot.event
 async def on_message(message):
-  if ctx.message.author.nick:
+  if message.author.nick:
     nname = message.author.nick
   else:
     nname = message.author.name

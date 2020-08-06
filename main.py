@@ -76,7 +76,7 @@ async def code(ctx, syntaxis, *, code):
 #    return switcher.get(argument, None)
 
 @Bot.command()
-async def z(ctx, *, text):
+async def a(ctx, *, text):
   if ctx.message.author.nick:
      nname = ctx.message.author.nick
   else:

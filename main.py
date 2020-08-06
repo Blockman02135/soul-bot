@@ -26,7 +26,7 @@ def speakAnswer(text):
 #======================================
 
 
-Bot = commands.Bot(command_prefix='|')
+Bot = commands.Bot(command_prefix='')
 Bot.remove_command('help')
 #=================Cog Reader==============================
 for file in os.listdir('./cogs'):
@@ -46,23 +46,6 @@ async def on_command_error(ctx, error):
     if isinstance(error, discord.ext.commands.errors.MissingRequiredArgument):
         await ctx.send(embed=discord.Embed(description=f'{ctx.message.author.mention}, **The command is entered incorrectly**'),delete_after=5)
         await ctx.message.delete()
-
-@Bot.event
-async def on_message(message):
-  if message.author.nick:
-    nname = message.author.nick
-  else:
-    nname = message.author.name
-  if message.author=='ɹaɹoldxaʇauɹaʇu!#2036':
-    w = await message.channel.create_webhook(name= nname)
-    await w.send(translate(message.content, "ru").text, avatar_url= message.author.avatar_url)
-    await w.delete()
-    await message.delete()
-  if message.author=='Blockman_#0431':
-    w = await message.channel.create_webhook(name= nname)
-    await w.send(translate(message.content, "en").text, avatar_url= message.author.avatar_url)
-    await w.delete()
-    await message.delete()
 
 @Bot.command()
 async def code(ctx, syntaxis, *, code):
@@ -93,7 +76,7 @@ async def code(ctx, syntaxis, *, code):
 #    return switcher.get(argument, None)
 
 @Bot.command()
-async def t(ctx, languarge, *, text):
+async def %(ctx, languarge, *, text):
   if ctx.message.author.nick:
      nname = ctx.message.author.nick
   else:

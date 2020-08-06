@@ -18,9 +18,33 @@ async def on_ready():
 
 @Bot.event
 async def on_message(message):
-  if (not message.author == Bot.user):
+  if (not message.author.discriminator=="0000" and not message.author==Bot.user):
+    smsg =f'**EN:** {translate(message.content, "en").text}\n========================\n**RU:** {translate(message.content,"ru").text}'
+    logmsg = discord.Embed(
+      title= f'**{message.author}** sended message',
+      color=0xfff000,
+      timestamp=message.created_at)
+    logmsg.description=(
+      f'Message has been sended in channel {message.channel.mention}'
+    )
+    logmsg.add_field(
+        name= 'Message',
+        value= message.content
+    )
+    logmsg.add_field(
+        name= 'EN',
+        value= translate(message.content, "en").text
+    )
+    logmsg.add_field(
+        name= 'RU',
+        value= translate(message.content, "ru").text
+    )
+    logmsg.set_thumbnail(url=message.author.avatar_url)
+    logmsg.set_footer(text=f'Message languarge: {translate(message.content, "en").src}')
+    log_C = Bot.get_channel(740908170679156737)
+    await log_C.send(embed=logmsg)
     w = await message.channel.create_webhook(name=message.author.name)
-    await w.send(f'**EN:** {translate(message.content, "en").text}\n========================\n**RU:** {translate(message.content,"ru").text}', avatar_url= message.author.avatar_url)
+    await w.send(smsg, avatar_url= message.author.avatar_url)
     await w.delete()
     await message.delete()
   

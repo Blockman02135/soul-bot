@@ -36,7 +36,7 @@ for file in os.listdir('./cogs'):
 @Bot.event
 async def on_ready():
   print(f'[SYS] {Bot.user} online!')
-  await Bot.change_presence(activity= discord.Game(name= f'{Bot.user.name} by Blockman_#0431 for The Soul Script Server!'))
+  await Bot.change_presence(activity= discord.Game(name= f'{Bot.user.name} by Blockman_#0431!'))
 
 @Bot.event
 async def on_command_error(ctx, error):

@@ -7,11 +7,7 @@ token = os.environ.get('BOT_TOKEN')
 def translate(text,languarge):
   result = translator.translate(text, dest=languarge)
   return result
-#================================
-for file in os.listdir('./cogs'):
-    if file.endswith('.py'):
-        Bot.load_extension(f'cogs.{file[:-3]}')
-
+#============================================
 Bot = commands.Bot(command_prefix='no prefix!!!')
 Bot.remove_command('help')
 

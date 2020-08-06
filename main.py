@@ -26,7 +26,7 @@ def speakAnswer(text):
 #======================================
 
 
-Bot = commands.Bot(command_prefix='')
+Bot = commands.Bot(command_prefix='=')
 Bot.remove_command('help')
 #=================Cog Reader==============================
 for file in os.listdir('./cogs'):
@@ -82,7 +82,7 @@ async def z(ctx, *, text):
   else:
      nname = ctx.message.author.name
   w = await ctx.channel.create_webhook(name= nname)
-  await w.send(f'{translate(text, "en").text}\n\n{translate(text,"ru")}', avatar_url= ctx.message.author.avatar_url)
+  await w.send(f'{translate(text, "en").text}\n========================\n{translate(text,"ru").text}', avatar_url= ctx.message.author.avatar_url)
   await w.delete()
   await ctx.message.delete()
 

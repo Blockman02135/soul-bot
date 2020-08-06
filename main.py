@@ -18,7 +18,8 @@ async def on_ready():
 
 @Bot.event
 async def on_message(message):
-  if (not message.author.discriminator=="0000" and not message.author==Bot.user):
+  first_symbol = message.content.split(' ')[slice(1)]
+  if (not message.author.discriminator=="0000" and not message.author==Bot.user and not first_symbol[0]=="//"):
     smsg =f'**EN:** {translate(message.content, "en").text}\n========================\n**RU:** {translate(message.content,"ru").text}'
     logmsg = discord.Embed(
       title= f'**{message.author}** sended message',
@@ -47,5 +48,21 @@ async def on_message(message):
     await w.send(smsg, avatar_url= message.author.avatar_url)
     await w.delete()
     await message.delete()
+  else:
+    if (first_symbol[0]=="//"):
+      msg = message.content.split(' ')[slice(1,2001)]
+      msg = ' '.join(msg)
+      if (not msg==''):
+        w = await message.channel.create_webhook(name=message.author.name)
+        await w.send(msg, avatar_url= message.author.avatar_url)
+        await w.delete()
+        await message.delete()
+      else:
+        emb = discord.Embed(
+          title= 'Syntax error',
+          description= f"{message.author.mention}, message can't be empty!"
+        )
+        await message.channel.send(embed=emb,delete_after=10)
+        await message.delete()
   
 Bot.run(str(token))
